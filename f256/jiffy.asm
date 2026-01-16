@@ -220,8 +220,10 @@ receive     .proc
 
             ; Assume not EOI until proved otherwise
             stz     self.rx_eoi
+            .if JIFFY_DEBUG
             lda     #$0d ; green
-            DBG_CALL debug_set_color
+            jsr debug_set_color
+            .endif
 
             ; Wait for the sender to have a byte
             stz     self.temp
@@ -234,7 +236,7 @@ receive     .proc
 _wait1      jsr     platform.iec.port.read_CLOCK
             bcc     _wait1
 
-            delay_y 37,80
+            delay_y 37,84
 
             ;sei
 
