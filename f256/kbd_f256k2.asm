@@ -201,11 +201,13 @@ joysticks
         sta     kernel.event.entry.type,y
 
         lda     JRA
+        ora     #$80
         sta     joy0
         eor     #$ff
         sta     kernel.event.entry.joystick.joy0,y
         
         lda     JRB
+        ora     #$80
         sta     joy1
         eor     #$ff
         sta     kernel.event.entry.joystick.joy1,y
@@ -220,9 +222,11 @@ scan
 
       ; Check the joysticks
         lda     JRA
+        ora     #$80
         eor     joy0
         bne     _joysticks
         lda     JRB
+        ora     #$80
         eor     joy1
         beq     _keyboard
 
