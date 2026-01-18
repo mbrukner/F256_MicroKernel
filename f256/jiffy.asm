@@ -285,6 +285,7 @@ _jiffy_read
             stz     $D6A9
             bra     _shuffle_bits
 _no_eoi
+            adc     #$80
             sta     $D6A9
             lsr     a
             lsr     a
