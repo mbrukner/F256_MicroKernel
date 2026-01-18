@@ -53,7 +53,7 @@ used:   .res    1
 
         jmp     fat32_open_dir
         jmp     fat32_get_vollabel
-        jmp     fat32_read_dirent
+        jmp     fat32_read_dirent_filter_hidden
         jmp     fat32_get_free_space
         jmp     fat32_close
         

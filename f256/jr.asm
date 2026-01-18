@@ -327,15 +327,16 @@ hw_rti
 
 puts        jmp     platform.console.puts
 
-board       .struct     id, codec
+board       .struct     id, codec, k
 mid         .byte       \id
 codec_init  .byte       \codec
+k           .byte       \k
 size        .ends
             
-boards      .dstruct    board, $02,%00000011  ; jr/mmu
-_2          .dstruct    board, $12,%00010011  ; k/mmu
-_3          .dstruct    board, $22,%00011101  ; jr2/mmu
-_4          .dstruct    board, $11,%00011111  ; k2/mmu
+boards      .dstruct    board, $02,%00000011,$00  ; jr/mmu
+_2          .dstruct    board, $12,%00010011,$01  ; k/mmu
+_3          .dstruct    board, $22,%00011101,$00  ; jr2/mmu
+_4          .dstruct    board, $11,%00011111,$01  ; k2/mmu
 boards_end  = * - boards           
 
 get_board
