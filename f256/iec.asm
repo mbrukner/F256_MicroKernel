@@ -185,6 +185,7 @@ rx_eoi      .fill       0   ; shared with mark
 mark        .byte       ?
 sleep20     .byte       ?
 jiffy       .byte       ?   ; jiffy support (0: no/not tested, <0: jiffy detected)
+no_jiffy    .byte       ?   ; non-zero: JiffyDOS disabled via DIP switch
 temp        .byte       ?   ; bit assembly
 status      .byte       ?   ; last drive status
             .if IEC_DEBUG
@@ -216,6 +217,9 @@ _iec_init
             pla
             jsr     platform.iec.port.init
             DBG_CALL debug_init
+            jsr     platform.dips.read
+            and     #platform.dips.NO_JIFFY
+            sta     self.no_jiffy
             jsr     platform.jiffy.init
 
           ; Bail if ATN and SRQ fail to float back up.
@@ -483,6 +487,8 @@ _loop
             bcs     _send_bit
             bit     self.jiffy
             bmi     _send_bit
+            bit     self.no_jiffy
+            bne     _send_bit
             jsr     jiffy.detect
 
 _send_bit

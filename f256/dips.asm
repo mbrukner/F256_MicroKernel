@@ -12,10 +12,10 @@ dips        .namespace
 GAMMA       =   $80     ; 8 ; Monitor type (analog/digital)
 HI_RES      =   $40     ; 7 ; Monitor sync (60/70)
 VIAKBD      =   $20     ; 6 ; CBM keyboard is installed (or snd exp)
-SIDS        =   $10     ; 5 ; SIDs are installed
+NO_JIFFY    =   $10     ; 5 ; Disable JiffyDOS protocol
 WIFI        =   $08     ; 4 ; Feather WiFi installed
 SLIP        =   $04     ; 3 ; Enable SLIP support
-ADV_SD      =   $02     ; 2 ; Enable the rich but slow SD/SPI stack.
+DIP2        =   $02     ; 2 ;
 BOOT_MENU   =   $01     ; 1 ; Enable boot menu
 
 read
